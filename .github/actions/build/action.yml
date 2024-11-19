@@ -1,0 +1,37 @@
+name: build_jekyll_python
+description: axtion to build jekyll blog with python requirements
+inputs:
+  build_source:
+    description: source directory for build
+    required: true 
+    type: string
+  build_destination:
+    description: destination directory for build
+    required: true 
+    type: string
+  build_languages:
+    description: languages used to build code
+    required: true 
+    type: string    
+runs:
+  using: "composite"
+  steps:
+    - name: build python
+      if: ${{contains(inputs.build_languages,'python')}}     
+      shell: bash
+      run: |
+        pip3 install -r requirements.txt 
+    - name: build jekyll
+      if: ${{contains(inputs.build_languages,'ruby')}}     
+      shell: bash
+      run: |
+        export JEKYLL_ENV=production
+        bundle exec jekyll build \
+        --source ./${{inputs.build_source}} \
+        --destination ${{inputs.build_destination}}
+    - name: Purge unused CSS
+      shell: bash 
+      run: |
+        npm install -g purgecss
+        purgecss -c purgecss.config.js
+        echo action done
