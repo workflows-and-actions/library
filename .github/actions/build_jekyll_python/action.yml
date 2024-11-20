@@ -1,5 +1,5 @@
 name: build_jekyll_python
-description: axtion to build jekyll blog with python requirements
+description: build jekyll with ruby and python
 inputs:
   build_source:
     description: source directory for build
