@@ -1,4 +1,5 @@
-name: build and deploy jobs
+# A custom workflow for build and deploy.
+name: build_deploy_custom
 on:
   workflow_call:
     inputs:
