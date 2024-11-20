@@ -63,7 +63,7 @@ jobs:
         uses: actions/configure-pages@v5
       - name: install and Build 
         if: ${{contains(inputs.build_languages,'jekyll')}}     
-        uses: workflows-and-actions/.github/actions/build@main
+        uses: workflows-and-actions/library/.github/actions/build@main
         with:
           build_source: ${{inputs.build_source}}
           build_destination: ${{inputs.build_destination}}
