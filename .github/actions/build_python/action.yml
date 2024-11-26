@@ -30,5 +30,4 @@ runs:
       shell: bash
       run: |
           pip3 install -r requirements.txt
-          cp README.md ${{inputs.build_source}}
           jupyter lite build --contents content --output-dir ${{inputs.build_destination}}
