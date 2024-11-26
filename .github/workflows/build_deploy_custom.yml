@@ -20,12 +20,14 @@ on:
         default: true 
       build_languages:
         description: languages used to build code
-        required: true 
+        required: false 
         type: string
+        default: ''
       build_script_code:
         description: code for the script that builds the app
-        required: true 
+        required: false  
         type: string   
+        default: 'gh-pages'
       ruby_version: 
         description: python version
         required: false 
@@ -76,7 +78,7 @@ jobs:
           build_script_code: ${{inputs.build_script_code}}
           ruby_version: ${{inputs.ruby_version}}
       - name: jekyll-build-pages@v1
-        if: ${{contains(inputs.build_languages,'gh-pages')}}
+        if: ${{contains(inputs.build_script_code,'gh-pages')}}
         uses: actions/jekyll-build-pages@v1
         with:
           source: ${{inputs.build_source}}
