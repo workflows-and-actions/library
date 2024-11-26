@@ -22,6 +22,20 @@ on:
         description: languages used to build code
         required: true 
         type: string
+      build_script_code:
+        description: code for the script that builds the app
+        required: true 
+        type: string   
+      ruby_version: 
+        description: python version
+        required: false 
+        type: string
+        default: 3.3.x
+      python_version: 
+        description: python version
+        required: false 
+        type: string
+        default: 3.3.x
       deploy_to:
         description: site host type
         required: false 
@@ -33,10 +47,6 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - name: test input
-        if: ${{contains(inputs.build_languages,'ruby')}}     
-        run: |
-          echo ${{inputs.build_languages}}
       - name: checkout file
         uses: actions/checkout@v4
         if: inputs.sparse_checkout
@@ -46,29 +56,25 @@ jobs:
         # cone mode false means will checkout only the file/files mentioned in the path
         # default is true which checks out repository root level files unnecessarily for our case
           sparse-checkout-cone-mode: false  
-      - name: Setup Ruby 
-        if: ${{contains(inputs.build_languages,'ruby')}}     
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.3.5"
-          bundler-cache: true 
-      - name: Setup Python
-        if: ${{contains(inputs.build_languages,'python')}}     
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-          cache: "pip" # caching pip dependencies
-          
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
       - name: install and Build 
-        if: ${{contains(inputs.build_languages,'jekyll')}}     
-        uses: workflows-and-actions/library/.github/actions/build_jekyll_python@main
+        if: ${{contains(inputs.build_languages,'python')}}     
+        uses: workflows-and-actions/library/.github/actions/build_python@main
         with:
           build_source: ${{inputs.build_source}}
           build_destination: ${{inputs.build_destination}}
-          build_languages: ${{inputs.build_languages}}
+          build_script_code: ${{inputs.build_script_code}}
+          python_version: ${{inputs.python_version}}
+      - name: ruby install and Build 
+        if: ${{contains(inputs.build_languages,'ruby')}}     
+        uses: workflows-and-actions/library/.github/actions/build_jekyll@main
+        with:
+          build_source: ${{inputs.build_source}}
+          build_destination: ${{inputs.build_destination}}
+          build_script_code: ${{inputs.build_script_code}}
+          ruby_version: ${{inputs.ruby_version}}
       - name: jekyll-build-pages@v1
         if: ${{contains(inputs.build_languages,'gh-pages')}}
         uses: actions/jekyll-build-pages@v1
