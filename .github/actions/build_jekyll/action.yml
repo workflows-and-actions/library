@@ -1,5 +1,5 @@
-name: build_jekyll_python
-description: build jekyll with ruby and python
+name: build_jekyll
+description: custom build jekyll
 inputs:
   build_source:
     description: source directory for build
@@ -16,11 +16,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: build python
-      if: ${{contains(inputs.build_languages,'python')}}     
-      shell: bash
-      run: |
-        pip3 install -r requirements.txt 
     - name: build jekyll
       if: ${{contains(inputs.build_languages,'ruby')}}     
       shell: bash
