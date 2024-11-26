@@ -1,0 +1,38 @@
+name: build_python
+description: build python
+inputs:
+  build_source:
+    description: source directory for build
+    required: true 
+    type: string
+  build_destination:
+    description: destination directory for build
+    required: true 
+    type: string
+  build_script_code:
+    description: code for the script that builds the app
+    required: false  
+    type: string   
+    default: ''
+  python_version: 
+    description: python version
+    required: false 
+    type: string
+    default: 3.x
+runs:
+  using: composite
+  steps:
+    - name: Setup Python  
+      uses: actions/setup-python@v5
+      with:
+        python-version: "${{inputs.python_version}}"
+        cache: "pip" # caching pip dependencies
+    - name: install requirements
+      shell: bash
+      run: pip3 install -r requirements.txt
+    - name: build jupyterlite
+      if: "${{contains(inputs.build_script_code,'jupyterlite')}}"
+      shell: bash
+      run: |
+          cp README.md "${{inputs.build_source}}" 
+          jupyter lite build --contents "${{inputs.build_source}}" --output-dir "${{inputs.build_destination}}"
