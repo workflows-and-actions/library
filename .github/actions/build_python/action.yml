@@ -25,12 +25,10 @@ runs:
       with:
         python-version: "${{inputs.python_version}}"
         cache: "pip" # caching pip dependencies
-    - name: install requirements
-      shell: bash
-      run: pip3 install -r requirements.txt
     - name: build jupyterlite
       if: "${{contains(inputs.build_script_code,'jupyterlite')}}"
       shell: bash
       run: |
+          pip3 install -r requirements.txt
           cp README.md "${{inputs.build_source}}" 
           jupyter lite build --contents "${{inputs.build_source}}" --output-dir "${{inputs.build_destination}}"
