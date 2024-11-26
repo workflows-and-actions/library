@@ -69,7 +69,7 @@ jobs:
           python_version: ${{inputs.python_version}}
       - name: ruby install and Build 
         if: ${{contains(inputs.build_languages,'ruby')}}     
-        uses: workflows-and-actions/library/.github/actions/build_jekyll@main
+        uses: workflows-and-actions/library/.github/actions/build_ruby@main
         with:
           build_source: ${{inputs.build_source}}
           build_destination: ${{inputs.build_destination}}
