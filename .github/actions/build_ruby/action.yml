@@ -1,5 +1,5 @@
-name: build_jekyll
-description: custom build jekyll
+name: build_ruby
+description: custom build ruby 
 inputs:
   build_source:
     description: source directory for build
@@ -23,16 +23,16 @@ runs:
     - name: Setup Ruby     
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version:  "${{inputs.ruby_version}}"
+        ruby-version:  ${{inputs.ruby_version}}
         bundler-cache: true 
     - name: build jekyll
-      if: "${{contains(inputs.build_script_code,'jekyll')}}"
+      if: ${{contains(inputs.build_script_code,'jekyll')}}
       shell: bash
       run: |
         export JEKYLL_ENV=production
         bundle exec jekyll build \
-        --source "./${{inputs.build_source}}" \
-        --destination "${{inputs.build_destination}}"
+        --source ./${{inputs.build_source}} \
+        --destination ${{inputs.build_destination}}
     - name: Purge unused CSS
       shell: bash 
       run: |
