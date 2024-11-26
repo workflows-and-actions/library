@@ -23,12 +23,12 @@ runs:
     - name: Setup Python  
       uses: actions/setup-python@v5
       with:
-        python-version: "${{inputs.python_version}}"
-        cache: "pip" # caching pip dependencies
+        python-version: ${{inputs.python_version}}
+        cache: pip # caching pip dependencies
     - name: build jupyterlite
-      if: "${{contains(inputs.build_script_code,'jupyterlite')}}"
+      if: ${{contains(inputs.build_script_code,'jupyterlite')}}
       shell: bash
       run: |
           pip3 install -r requirements.txt
-          cp README.md "${{inputs.build_source}}" 
-          jupyter lite build --contents "${{inputs.build_source}}" --output-dir "${{inputs.build_destination}}"
+          cp README.md ${{inputs.build_source}}
+          jupyter lite build --contents content --output-dir ${{inputs.build_destination}}
