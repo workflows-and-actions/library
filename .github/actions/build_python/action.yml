@@ -11,14 +11,12 @@ inputs:
     type: string
   build_script_code:
     description: code for the script that builds the app
-    required: false  
+    required: true 
     type: string   
-    default: ''
   python_version: 
     description: python version
-    required: false 
+    required: true 
     type: string
-    default: 3.x
 runs:
   using: composite
   steps:
