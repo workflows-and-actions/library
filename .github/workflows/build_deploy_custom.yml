@@ -37,7 +37,7 @@ on:
         description: python version
         required: false 
         type: string
-        default: 3.3.x
+        default: 3.3x
       deploy_to:
         description: site host type
         required: false 
