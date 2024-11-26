@@ -1,5 +1,5 @@
 name: build_python
-description: build python
+description: custom build python
 inputs:
   build_source:
     description: source directory for build
