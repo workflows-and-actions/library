@@ -33,7 +33,6 @@ runs:
           jupyter lite build --contents content --output-dir ${{inputs.build_destination}}
     - name: build jupyterlite-xeus
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
-      shell: bash
       uses: mamba-org/setup-micromamba@v1
       with:
           micromamba-version: '1.5.8-0'
