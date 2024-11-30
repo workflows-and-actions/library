@@ -27,6 +27,7 @@ runs:
         cache: pip # caching pip dependencies
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
+      shell: bash
       run: |
           jupyter lite build --XeusAddon.environment_file=environment.yml
     - name: install jupyterlite-pyodide packages
