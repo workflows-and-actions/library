@@ -30,7 +30,7 @@ runs:
       shell: bash
       run: |
           pip install jupyterlite-xeus
-          jupyter lite build --XeusAddon.environment_file=environment.yml
+          jupyter lite build --XeusAddon.environment_file=environment.yml --contents content --output-dir ${{inputs.build_destination}}  
     - name: install jupyterlite-pyodide packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-pyodide')}}
       shell: bash
