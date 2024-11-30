@@ -21,7 +21,7 @@ runs:
   using: composite
   steps:
     - name: Setup Python 
-     if: !contains(inputs.build_script_code,'jupyterlite-xeus')
+      if: !contains(inputs.build_script_code,'jupyterlite-xeus')
       uses: actions/setup-python@v5
       with:
         python-version: ${{inputs.python_version}}
