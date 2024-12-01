@@ -25,16 +25,12 @@ runs:
       with:
         python-version: ${{inputs.python_version}}
         cache: pip # caching pip dependencies
-    - name: Install mamba
-      uses: mamba-org/setup-micromamba@v2
-      with:
-        cache-environment: true 
-        environment-file: environment.yml
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
-      shell: bash -l {0}
+      shell: bash
       run: |
-          jupyter lite build --output-dir ${{inputs.build_destination}} --contents content 
+          pip install jupyterlite-xeus
+          jupyter lite build --output-dir ${{inputs.build_destination}}
     - name: install jupyterlite-pyodide packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-pyodide')}}
       shell: bash
