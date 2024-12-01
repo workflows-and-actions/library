@@ -26,7 +26,7 @@ runs:
         python-version: ${{inputs.python_version}}
         cache: pip # caching pip dependencies
     - name: Install mamba
-      uses: mamba-org/setup-micromamba@v1
+      uses: mamba-org/setup-micromamba@v2
       with:
         environment-file: environment.yml
     - name: install jupyterlite-xeus packages
