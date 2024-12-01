@@ -32,7 +32,6 @@ runs:
           pip install jupyterlite-xeus
           jupyter lite build \
           --XeusAddon.environment_file=environment.yml \
-          --XeusAddon.mount_jupyterlite_content=True \
           --output-dir ${{inputs.build_destination}} \
           --contents content 
     - name: install jupyterlite-pyodide packages
