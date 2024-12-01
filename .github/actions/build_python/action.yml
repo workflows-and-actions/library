@@ -31,7 +31,7 @@ runs:
         environment-file: environment.yml
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
-      shell: bash
+      shell: bash -l {0}
       run: |
           jupyter lite build --output-dir ${{inputs.build_destination}} --contents content 
     - name: install jupyterlite-pyodide packages
