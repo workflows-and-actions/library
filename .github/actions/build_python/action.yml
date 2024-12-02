@@ -23,13 +23,11 @@ runs:
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12'
-        cache: pip # caching pip dependencies
+        python-version: ${{inputs.python_version}}
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
-      uses: mamba-org/setup-micromamba@v1
+      uses: mamba-org/setup-micromamba@v2
       with:
-        micromamba-version: '1.5.8-0'
         environment-file: build-environment.yml
         cache-environment: true 
     - name: Build the JupyterLite site
