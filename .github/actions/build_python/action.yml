@@ -20,11 +20,10 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Setup Python 
+    - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: ${{inputs.python_version}}
-        cache: pip # caching pip dependencies
+        python-version: '3.12'
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
       uses: mamba-org/setup-micromamba@v1
