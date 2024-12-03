@@ -41,7 +41,8 @@ runs:
       run: |
           pip install jupyterlite-xeus
           jupyter lite build \
-          --output-dir ${{inputs.build_destination}}
+          --output-dir ${{inputs.build_destination}} \
+          --XeusAddon.mount_jupyterlite_content=True
     - name: install jupyterlite-pyodide packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-pyodide')}}
       shell: bash
