@@ -45,7 +45,7 @@ runs:
           --output-dir ${{inputs.build_destination}} \
           --XeusAddon.mount_jupyterlite_content=True \
           --XeusAddon.environment_file=${{inputs.mamba_env_file}} \
-          --XeusAddon.mounts="myfiles:content"
+          --XeusAddon.mounts="myfiles:/home/runner/work/test/test/content"
     - name: install jupyterlite-pyodide packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-pyodide')}}
       shell: bash
