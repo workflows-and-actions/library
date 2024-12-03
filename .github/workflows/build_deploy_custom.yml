@@ -62,6 +62,7 @@ jobs:
           build_destination: ${{inputs.build_destination}}
           build_script_code: ${{inputs.build_script_code}}
           python_version: ${{inputs.python_version}}
+          mamba_env_file: ${{inputs.mamba_env_file}}
       - name: ruby install and Build 
         if: ${{contains(inputs.build_languages,'ruby')}}     
         uses: workflows-and-actions/library/.github/actions/build_ruby@main
