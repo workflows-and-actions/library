@@ -17,6 +17,10 @@ inputs:
     description: python version
     required: true 
     type: string
+  mamba_env_file:
+    description: micromamba evironment config file
+    required: true 
+    type: string   
 runs:
   using: composite
   steps:
@@ -26,10 +30,10 @@ runs:
         python-version: ${{inputs.python_version}}
         # cache: pip # do not uncomment. caching pip dependencies gives weird errors 
     - name: install jupyterlite-xeus packages
-      if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
+      if: ${{contains(inputs.build_script_code,'mamba')}}
       uses: mamba-org/setup-micromamba@v2
       with:
-        environment-file: build-environment.yml
+        environment-file: ${{inputs.mamba_env_file}}
         cache-environment: true 
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
