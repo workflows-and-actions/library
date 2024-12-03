@@ -31,19 +31,17 @@ runs:
       #  cache: pip # caching gives errors during dev, use only after workflow works
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'mamba')}}
-      uses: mamba-org/setup-micromamba@v1
+      uses: mamba-org/setup-micromamba@v2
       with:
-        micromamba-version: '1.5.8-0'
         environment-file: ${{inputs.mamba_env_file}}
         cache-environment: false #  caching gives errors during dev, use only after workflow works
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
-      shell: bash -l {0}
+      shell:
       run: |
+          pip install jupyter-xeus
           jupyter lite build \
-          --contents content \
-          --output-dir ${{inputs.build_destination}} \
-          --XeusAddon.mount_jupyterlite_content=True
+          --output-dir ${{inputs.build_destination}}
     - name: install jupyterlite-pyodide packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-pyodide')}}
       shell: bash
