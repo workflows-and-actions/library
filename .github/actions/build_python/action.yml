@@ -40,7 +40,7 @@ runs:
       shell: bash -l {0}
       run: |
           jupyter lite build \
-           --contents content \
+          --contents content \
           --output-dir ${{inputs.build_destination}} \
           --XeusAddon.mount_jupyterlite_content=True \
     - name: install jupyterlite-pyodide packages
