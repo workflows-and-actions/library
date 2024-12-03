@@ -31,8 +31,9 @@ runs:
       #  cache: pip # caching gives errors during dev, use only after workflow works
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'mamba')}}
-      uses: mamba-org/setup-micromamba@v2
+      uses: mamba-org/setup-micromamba@v1
       with:
+        micromamba-version: '1.5.8-0'
         environment-file: ${{inputs.mamba_env_file}}
         cache-environment: false #  caching gives errors during dev, use only after workflow works
     - name: install jupyterlite-xeus packages
