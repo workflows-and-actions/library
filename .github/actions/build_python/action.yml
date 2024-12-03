@@ -47,8 +47,7 @@ runs:
                     --XeusAddon.environment_file=${{inputs.mamba_env_file}}
     - name: install jupyterlite-pyodide packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-pyodide')}}
-      shell: bash
-      run: |
-          pip install -r requirements.txt        
+      shell: bash -l {0}
+      run: |     
           jupyter lite build --contents content --output-dir ${{inputs.build_destination}}     
           
