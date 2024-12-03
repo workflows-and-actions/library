@@ -28,13 +28,13 @@ runs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{inputs.python_version}}
-        # cache: pip # do not uncomment. caching pip dependencies gives weird errors 
+      #  cache: pip # caching gives errors during dev, use only after workflow works
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'mamba')}}
       uses: mamba-org/setup-micromamba@v2
       with:
         environment-file: ${{inputs.mamba_env_file}}
-        cache-environment: true 
+      #   cache-environment: true #  caching gives errors during dev, use only after workflow works
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
       shell: bash -l {0}
