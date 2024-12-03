@@ -27,7 +27,7 @@ runs:
         # cache: pip # do not uncomment. caching pip dependencies gives weird errors 
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
-      shell: bash
+      shell: bash -l {0}
       run: |
           pip install jupyterlite-xeus
           jupyter lite build --contents content --output-dir ${{inputs.build_destination}} --XeusAddon.mount_jupyterlite_content=True
