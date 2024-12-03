@@ -39,7 +39,7 @@ runs:
       if: ${{contains(inputs.build_script_code,'jupyterlite-xeus')}}
       shell:
       run: |
-          pip install jupyter-xeus
+          pip install jupyterlite-xeus
           jupyter lite build \
           --output-dir ${{inputs.build_destination}}
     - name: install jupyterlite-pyodide packages
