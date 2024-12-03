@@ -33,6 +33,11 @@ on:
         required: false 
         type: string
         default: 3.x
+      mamba_env_file: 
+        description: micromamba evironment config file
+        required: false 
+        type: string
+        default: environment.yml
       deploy_to:
         description: site host type
         required: false 
