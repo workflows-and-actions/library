@@ -31,7 +31,7 @@ runs:
         environment-file: build-environment.yml
         cache-environment: true 
     - name: Build the JupyterLite site
-      shell: bash -l {0}
+      shell:
       run: jupyter lite build --contents content --output-dir ${{inputs.build_destination}} 
     - name: install jupyterlite-pyodide packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-pyodide')}}
