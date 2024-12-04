@@ -41,13 +41,21 @@ runs:
       run: |
           pip install jupyterlite-xeus
           jupyter lite build \
-          --config="${{ github.workspace }}/jupyter_lite_config.yml" \
-          --output-dir ${{inputs.build_destination}} \
+          --contents content \
+          --no_sourcemaps=true \
+          --no_unused_shared_packages=true \
+          --output-dir ${{inputs.build_destination}}  \
           --XeusAddon.mount_jupyterlite_content=True \
                     --XeusAddon.environment_file=${{inputs.mamba_env_file}}
     - name: install jupyterlite-pyodide packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-pyodide')}}
       shell: bash -l {0}
       run: |     
-          jupyter lite build --config="${{ github.workspace }}/jupyter_lite_config.yml" --output-dir ${{inputs.build_destination}}     
+          jupyter lite build \
+          --contents content \
+          --no_sourcemaps=true \
+          --no_unused_shared_packages=true \
+          --output-dir ${{inputs.build_destination}}  
+#          jupyter lite build --config="${{ github.workspace }}/jupyter_lite_config.yml" --output-dir ${{inputs.build_destination}}     
+
           
