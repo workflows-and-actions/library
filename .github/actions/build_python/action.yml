@@ -50,12 +50,6 @@ runs:
     - name: install jupyterlite-pyodide packages
       if: ${{contains(inputs.build_script_code,'jupyterlite-pyodide')}}
       shell: bash -l {0}
-      run: |     
-          jupyter lite build \
-          --contents content \
-          --no_sourcemaps=true \
-          --no_unused_shared_packages=true \
-          --output-dir ${{inputs.build_destination}}  
-#          jupyter lite build --config="${{ github.workspace }}/jupyter_lite_config.yml" --output-dir ${{inputs.build_destination}}     
+      run: jupyter lite build --config="${{ github.workspace }}/jupyter_lite_config.json" --output-dir ${{inputs.build_destination}}     
 
           
