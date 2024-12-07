@@ -1,0 +1,9 @@
+name: build_node
+description: custom build node 
+runs:
+  using: composite
+  steps:
+    - name: Install npm from package.json
+      uses: bahmutov/npm-install@v1
+    - name: Build node project
+      run: npm run build
