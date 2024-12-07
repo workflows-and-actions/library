@@ -54,7 +54,10 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: install and Build 
+      - name: node install and Build 
+        if: ${{contains(inputs.build_languages,'node')}}     
+        uses: workflows-and-actions/library/.github/actions/build_node@main
+      - name: python install and Build 
         if: ${{contains(inputs.build_languages,'python')}}     
         uses: workflows-and-actions/library/.github/actions/build_python@main
         with:
