@@ -14,7 +14,7 @@ inputs:
     required: true 
     type: string   
   ruby_version: 
-    description: python version
+    description: ruby version
     required: true  
     type: string
 runs:
