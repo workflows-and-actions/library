@@ -29,6 +29,10 @@ runs:
       with:
         python-version: ${{inputs.python_version}}
       #  cache: pip # caching gives errors during dev, use only after workflow works
+    - name: install python packages using requirements.txt
+      if: ${{contains(inputs.build_script_code,'pip_install_requirements')}}
+      shell: bash    
+      run: pip install requirements.txt
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'mamba')}}
       uses: mamba-org/setup-micromamba@v2
