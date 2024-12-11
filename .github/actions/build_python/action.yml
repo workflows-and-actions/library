@@ -32,7 +32,7 @@ runs:
     - name: install python packages using requirements.txt
       if: ${{contains(inputs.build_script_code,'pip_install_requirements')}}
       shell: bash    
-      run: pip install requirements.txt
+      run: pip install -r requirements.txt
     - name: install jupyterlite-xeus packages
       if: ${{contains(inputs.build_script_code,'mamba')}}
       uses: mamba-org/setup-micromamba@v2
