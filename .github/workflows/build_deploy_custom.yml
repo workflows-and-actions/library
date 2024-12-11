@@ -27,12 +27,12 @@ on:
         description: python version
         required: false 
         type: string
-        default: 3.x
+        default: 3.3.6
       python_version: 
         description: python version
         required: false 
         type: string
-        default: 3.3.6
+        default: 3.x 
       mamba_env_file: 
         description: micromamba evironment config file
         required: false 
