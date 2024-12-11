@@ -32,7 +32,7 @@ on:
         description: python version
         required: false 
         type: string
-        default: 3.x
+        default: 3.3.6
       mamba_env_file: 
         description: micromamba evironment config file
         required: false 
