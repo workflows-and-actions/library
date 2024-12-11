@@ -27,7 +27,7 @@ on:
         description: python version
         required: false 
         type: string
-        default: 3.3.x
+        default: 3.x
       python_version: 
         description: python version
         required: false 
