@@ -20,9 +20,8 @@ on:
         default: ''
       build_script_code:
         description: code for the script that builds the app
-        required: false  
+        required: true   
         type: string   
-        default: 'gh-pages'
       ruby_version: 
         description: python version
         required: false 
