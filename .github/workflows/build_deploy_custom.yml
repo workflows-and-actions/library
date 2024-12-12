@@ -81,7 +81,7 @@ jobs:
           source: ${{inputs.build_source}}
           destination: ${{inputs.build_destination}}
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ${{inputs.build_destination}}
   deploy_gh_pages:
