@@ -80,8 +80,13 @@ jobs:
         with:
           source: ${{inputs.build_source}}
           destination: ${{inputs.build_destination}}
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+      - name: upload artifact for download from another workflow
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: ${{inputs.build_destination}}
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ${{inputs.build_destination}}
   deploy_gh_pages:
