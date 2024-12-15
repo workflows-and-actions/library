@@ -12,7 +12,7 @@ on:
         description: destination directory for build
         required: false 
         type: string
-        default: _site
+        default: dist
       build_languages:
         description: languages used to build code
         required: false 
@@ -37,6 +37,11 @@ on:
         required: false 
         type: string
         default: environment.yml
+      purgecss: 
+        description: purgecss
+        required: false 
+        type: string
+        default: 'yes' # yes or no
       deploy_to:
         description: site host type
         required: false 
@@ -80,6 +85,12 @@ jobs:
         with:
           source: ${{inputs.build_source}}
           destination: ${{inputs.build_destination}}
+      - name: Purge unused CSS
+        if: ${{inputs.purgecss=='yes'}} 
+        # IMPORTANT: make sure the paths in purgecss config file are consistent with build_destination
+        run: |
+          npm install -g purgecss
+          purgecss -c purgecss.config.js   
       - name: upload artifact for download from another workflow
         uses: actions/upload-artifact@v4
         with:
