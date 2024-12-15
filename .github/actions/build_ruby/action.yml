@@ -33,9 +33,3 @@ runs:
         bundle exec jekyll build \
         --source ./${{inputs.build_source}} \
         --destination ${{inputs.build_destination}}
-    - name: Purge unused CSS
-      shell: bash 
-      run: |
-        npm install -g purgecss
-        purgecss -c purgecss.config.js
-        echo action done
