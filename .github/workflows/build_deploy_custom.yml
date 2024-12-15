@@ -88,9 +88,7 @@ jobs:
       - name: Purge unused CSS
         if: ${{inputs.purgecss=='yes'}} 
         # IMPORTANT: make sure the paths in purgecss config file are consistent with build_destination
-        run: |
-          npm install -g purgecss
-          purgecss --config ./purgecss.config.js
+        run: npm run purge-css
       - name: upload artifact for download from another workflow
         uses: actions/upload-artifact@v4
         with:
