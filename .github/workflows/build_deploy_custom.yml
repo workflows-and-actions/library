@@ -12,7 +12,7 @@ on:
         description: destination directory for build
         required: false 
         type: string
-        default: dist
+        default: _site
       build_languages:
         description: languages used to build code
         required: false 
