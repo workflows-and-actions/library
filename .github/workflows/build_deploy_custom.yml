@@ -86,7 +86,7 @@ jobs:
           source: ${{inputs.build_source}}
           destination: ${{inputs.build_destination}}
       - name: Purge unused CSS
-        if: ${{inputs.purgecss=='yes'}} 
+        if: ${{inputs.purgecss=='yesr'}} 
         # IMPORTANT: make sure the paths in purgecss config file are consistent with build_destination
         run: |
           npm install -g purgecss
