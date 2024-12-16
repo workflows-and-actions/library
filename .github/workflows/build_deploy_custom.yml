@@ -88,7 +88,9 @@ jobs:
       - name: Purge unused CSS
         if: ${{inputs.purgecss=='yes'}} 
         # IMPORTANT: make sure the paths in purgecss config file are consistent with build_destination
-        run: npm run purge-css
+        run: |
+          sed "s|REPLACE_ME|new|${{inputs.build_destination}}" purgecss.config.js 
+          npm run purge-css
       #    ls -R ${{inputs.build_destination}}
       #    npm install -g purgecss
       #    purgecss -c purgecss.config.js
