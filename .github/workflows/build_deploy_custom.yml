@@ -49,6 +49,9 @@ on:
         default: 'gh-pages'
 jobs:
   build:
+    env:
+      bld: ${{inputs.build_destination}}
+      repo_name: ${{github.repository}}
     permissions:
       contents: read
       pages: write
@@ -92,9 +95,6 @@ jobs:
           export build_destination=./"${{inputs.build_destination}}"
           npm run purge-css
       #    ls -R ${{inputs.build_destination}}
-      #    npm install -g purgecss
-      #    purgecss -c purgecss.config.js
-      #  npm run purge-css --build_destination=${{inputs.build_destination}}
       - name: upload artifact for download from another workflow
         uses: actions/upload-artifact@v4
         with:
