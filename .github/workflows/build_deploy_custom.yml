@@ -55,9 +55,9 @@ on:
 jobs:
   build:
     env:
-      build_destination: ${{inputs.build_destination}}
-      deploy_to: ${{inputs.deploy_to}}
-      base_path: ${{inputs.base_path}}
+      GHWFL_build_destination: ${{inputs.build_destination}}
+      GHWFL_deploy_to: ${{inputs.deploy_to}}
+      GHWFL_base_path: ${{inputs.base_path}}
     permissions:
       contents: read
       pages: write
