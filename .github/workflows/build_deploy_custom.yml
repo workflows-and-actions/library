@@ -51,7 +51,7 @@ on:
         description: web base path used by builders
         required: false 
         type: string
-        default: '/'
+        default: 'use_defaults'
 jobs:
   build:
     env:
