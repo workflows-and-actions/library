@@ -9,4 +9,4 @@ runs:
       shell: bash
       run: |
         npm install
-        npm run build:ghp
+        npm run build
