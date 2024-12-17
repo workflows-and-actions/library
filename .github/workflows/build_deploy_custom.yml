@@ -47,11 +47,17 @@ on:
         required: false 
         type: string
         default: 'gh-pages'
+      base_path:
+        description: web base path used by builders
+        required: false 
+        type: string
+        default: '/'
 jobs:
   build:
     env:
-      bld: ${{inputs.build_destination}}
-      repo_name: ${{github.repository}}
+      build_destination: ${{inputs.build_destination}}
+      deploy_to: ${{inputs.deploy_to}}
+      base_path: ${{inputs.base_path}}
     permissions:
       contents: read
       pages: write
@@ -91,9 +97,7 @@ jobs:
       - name: Purge unused CSS
         if: ${{inputs.purgecss=='yes'}} 
         # IMPORTANT: make sure the paths in purgecss config file are consistent with build_destination
-        run: |
-          export build_destination=./"${{inputs.build_destination}}"
-          npm run purge-css
+        run: npm run purge-css
       #    ls -R ${{inputs.build_destination}}
       - name: upload artifact for download from another workflow
         uses: actions/upload-artifact@v4
