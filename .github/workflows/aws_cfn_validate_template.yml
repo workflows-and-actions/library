@@ -1,0 +1,20 @@
+# A custom workflow for build and deploy.
+name: build_deploy_custom
+on:
+  workflow_call:
+    inputs:
+      file_path:
+        description: template file path and name
+        required: true 
+        type: string
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout file
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: ${{inputs.file_path}}
+          sparse-checkout-cone-mode: false 
+      - name: validate
+        run: aws cloudformation validate-template --template-body ${{inputs.file_path}}
