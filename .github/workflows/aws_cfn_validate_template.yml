@@ -7,6 +7,11 @@ on:
         description: template file path and name
         required: true 
         type: string
+      aws_region:
+        description: template region
+        required: false 
+        type: string
+        default: 'us-east-1'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,4 +22,4 @@ jobs:
           sparse-checkout: ${{inputs.file_path}}
           sparse-checkout-cone-mode: false 
       - name: validate
-        run: aws cloudformation validate-template --template-body ${{inputs.file_path}}
+        run: aws cloudformation validate-template --template-body ${{inputs.file_path}} --region ${{inputs.aws_region}} 
