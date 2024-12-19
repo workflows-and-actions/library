@@ -99,7 +99,7 @@ jobs:
         # IMPORTANT: make sure the paths in purgecss config file are consistent with build_destination
         run: |
          npm install -g purgecss
-         purgecss -c purgecss.config.js
+         purgecss -c purgecss.config.cjs
       #  npm run purge-css
       #    ls -R ${{inputs.build_destination}}
       - name: upload artifact for download from another workflow
