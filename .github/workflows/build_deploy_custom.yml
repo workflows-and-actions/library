@@ -98,7 +98,7 @@ jobs:
         if: ${{inputs.purgecss=='yes'}} 
         # IMPORTANT: make sure the paths in purgecss config file are consistent with build_destination
         run: |
-         npm install -g purgecss
+         npm install -g @fullhuman/postcss-purgecss
          purgecss -c purgecss.config.cjs
       #  npm run purge-css
       #    ls -R ${{inputs.build_destination}}
