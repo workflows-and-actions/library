@@ -1,0 +1,16 @@
+name: build
+on:
+  workflow_call 
+# permissions:
+#  actions: read 
+# env:
+#  artifact_name: 'my-artifact'       
+jobs:   
+  job1:
+#    environment: ${{inputs.repo_env}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          echo ${{vars.aws_region}}
+          echo ${{secrets.user_id}}
