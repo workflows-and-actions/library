@@ -7,10 +7,14 @@ on:
 #  artifact_name: 'my-artifact'       
 jobs:   
   job1:
-#    environment: ${{inputs.repo_env}}
+    environment: ${{vars.active_repo_env}}
     runs-on: ubuntu-latest
     steps:
-      - name: test
+      - name: test var and environment
         run: |
           echo ${{vars.aws_region}}
+      - name: test secret
+        if: ${{contains(secrets.user_id=='xmile4ever')}}
+        run: |
+          echo 'success'
           echo ${{secrets.user_id}}
