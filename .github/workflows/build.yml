@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: test var and environment
         run: |
-          echo ${{vars.APP_NAME}
+          echo ${{vars.APP_NAME}}
       - name: checkout
         uses: actions/checkout@v4
       - name: Setup Pages
