@@ -13,8 +13,4 @@ jobs:
       - name: test var and environment
         run: |
           echo ${{vars.aws_region}}
-      - name: test secret
-        if: ${{contains(secrets.user_id=='xmile4ever')}}
-        run: |
-          echo 'success'
-          echo ${{secrets.user_id}}
+          echo ${{secrets.user_id=='xmile4ever'}}
