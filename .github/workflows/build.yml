@@ -6,21 +6,26 @@ on:
 # env:
 #  artifact_name: 'my-artifact'       
 jobs:   
-  job1:
+  build:
     environment: ${{vars.active_repo_env}}
-    runs-on: ubuntu-latest
+    env:
+      GHWFL_BUILD_DESTINATION_DIR: ${{vars.BUILD_DESTINATION_DIR}}
+      GHWFL_BUILD_SOURCE_PATH: ${{vars.BUILD_SOURCE_PATH}}
+      GHWFL_DEPLOY_HOST_TYPE: ${{vars.DEPLOY_HOST_TYPE}}
+      GHWFL_ACCESS_BASE_PATH: ${{vars.ACCESS_BASE_PATH}}
     permissions:
-    # needed by aws-actions/configure-aws-credentials
       contents: read
-      id-token: write
+      pages: write
+    runs-on: ubuntu-latest
     steps:
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE_GITHUB_DEPLOYER }} 
-          role-session-name: aws-github-hookup
-          aws-region: ${{vars.aws_region}}
       - name: test var and environment
         run: |
-          echo ${{vars.aws_region}}
-          echo ${{secrets.user_id=='xmile4ever'}}
+          echo ${{vars.APP_NAME}
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: node install and Build 
+        if: ${{contains(vars.BUILD_TYPE,'node')}}     
+        run: npm run ${{vars.NPM_INSTALL_COMMAND}}  && npm run ${{vars.NPM_BUILD_COMMAND}} && npm run ${{vars.NPM_PURGECSS_COMMAND}}   
