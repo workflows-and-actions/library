@@ -10,6 +10,12 @@ jobs:
     environment: ${{vars.active_repo_env}}
     runs-on: ubuntu-latest
     steps:
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_GITHUB_DEPLOYER }} 
+          role-session-name: aws-github-hookup
+          aws-region: ${{vars.aws_region}}
       - name: test var and environment
         run: |
           echo ${{vars.aws_region}}
