@@ -9,6 +9,10 @@ jobs:
   job1:
     environment: ${{vars.active_repo_env}}
     runs-on: ubuntu-latest
+    permissions:
+    # needed by aws-actions/configure-aws-credentials
+      contents: read
+      id-token: write
     steps:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
