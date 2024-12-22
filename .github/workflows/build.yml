@@ -28,4 +28,4 @@ jobs:
         uses: actions/configure-pages@v5
       - name: node install and Build 
         if: ${{contains(vars.BUILD_TYPE,'node')}}     
-        run: npm run ${{vars.NPM_INSTALL_COMMAND}}  && npm run ${{vars.NPM_BUILD_COMMAND}} && npm run ${{vars.NPM_PURGECSS_COMMAND}}   
+        run: npm ${{vars.NPM_INSTALL_COMMAND}}  && npm run ${{vars.NPM_BUILD_COMMAND}} && npm run ${{vars.NPM_PURGECSS_COMMAND}}   
