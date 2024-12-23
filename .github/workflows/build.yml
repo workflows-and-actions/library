@@ -28,4 +28,29 @@ jobs:
         uses: actions/configure-pages@v5
       - name: node install and Build 
         if: ${{contains(vars.BUILD_TYPE,'node')}}     
-        run: npm ${{vars.NPM_INSTALL_COMMAND}}  && npm run ${{vars.NPM_BUILD_COMMAND}} && npm run ${{vars.NPM_PURGECSS_COMMAND}}   
+        run: cd ${{vars.BUILD_ROOT_DIR}} && npm ${{vars.NPM_INSTALL_COMMAND}}  && npm run ${{vars.NPM_BUILD_COMMAND}} && npm run ${{vars.NPM_PURGECSS_COMMAND}}   
+      - name: upload artifact for download to deploy outside github
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{vars.BUILD_ARTIFACT}}
+          path: ${{vars.BUILD_DESTINATION_DIR}}
+  deploy_gh_pages:
+    if: ${{vars.DEPLOY_HOST_TYPE}}=='gh_pages'
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+    steps:
+      - name: Upload gh-pages artifact for github pages deploy
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${vars.BUILD_DESTINATION_DIR}}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4          
+          
