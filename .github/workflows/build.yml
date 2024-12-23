@@ -33,7 +33,7 @@ jobs:
       - name: Upload gh-pages artifact for github pages deploy
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${vars.BUILD_DESTINATION_DIR}} 
+          path: ${{vars.BUILD_DESTINATION_DIR}} 
   deploy_gh_pages:
     if: ${{vars.DEPLOY_HOST_TYPE}}=='gh_pages'
     runs-on: ubuntu-latest
