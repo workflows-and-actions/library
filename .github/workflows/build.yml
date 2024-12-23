@@ -11,6 +11,7 @@ jobs:
       GHWFL_ACCESS_BASE_PATH: ${{vars.ACCESS_BASE_PATH}}
     permissions:
       contents: read
+      pages: read
     runs-on: ubuntu-latest
     steps:
       - name: test var and environment
