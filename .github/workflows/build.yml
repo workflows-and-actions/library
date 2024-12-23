@@ -1,10 +1,6 @@
 name: build
 on:
-  workflow_call 
-# permissions:
-#  actions: read 
-# env:
-#  artifact_name: 'my-artifact'       
+  workflow_call       
 jobs:   
   build:
     environment: ${{vars.active_repo_env}}
@@ -34,6 +30,10 @@ jobs:
         with:
           name: ${{vars.BUILD_ARTIFACT}}
           path: ${{vars.BUILD_DESTINATION_DIR}}
+      - name: Upload gh-pages artifact for github pages deploy
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${vars.BUILD_DESTINATION_DIR}} 
   deploy_gh_pages:
     if: ${{vars.DEPLOY_HOST_TYPE}}=='gh_pages'
     runs-on: ubuntu-latest
@@ -41,15 +41,10 @@ jobs:
     permissions:
       contents: read
       pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
     steps:
-      - name: Upload gh-pages artifact for github pages deploy
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${vars.BUILD_DESTINATION_DIR}}
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4          
