@@ -4,6 +4,7 @@ on:
 jobs:   
   build:
     environment: ${{vars.active_repo_env}}
+    # the env below is used in vite and prugecss config
     env:
       GHWFL_BUILD_DESTINATION_DIR: ${{vars.BUILD_DESTINATION_DIR}}
       GHWFL_BUILD_SOURCE_PATH: ${{vars.BUILD_SOURCE_PATH}}
@@ -22,6 +23,13 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: jekyll-build-pages@v1
+        if: ${{contains(vars.BUILD_TYPE,'jekyll-gh-pages')}}
+     # default jekyll build   
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ${{vars.BUILD_ROOT_DIR}}
+          destination: ${{vars.BUILD_DESTINATION_DIR}} 
       - name: node install and Build 
         if: ${{contains(vars.BUILD_TYPE,'node')}}     
         run: cd ${{vars.BUILD_ROOT_DIR}} && npm ${{vars.NPM_INSTALL_COMMAND}}  && npm run ${{vars.NPM_BUILD_COMMAND}} && npm run ${{vars.NPM_PURGECSS_COMMAND}}   
