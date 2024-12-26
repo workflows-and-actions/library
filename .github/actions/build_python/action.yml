@@ -1,0 +1,34 @@
+name: build_python
+description: custom build python
+runs:
+  using: composite
+  steps:
+#    - name: Setup Python 
+#      uses: actions/setup-python@v5
+#      with:
+#        python-version: ${{env.python_version}}
+      #  cache: pip # caching gives errors during dev, use only after workflow works
+    - name: install python packages using requirements.txt
+      if: ${{contains(env.BUILD_TYPE,'pip_install_requirements')}}
+      shell: bash    
+      run: pip install -r requirements.txt
+    - name: install jupyterlite-xeus packages
+      if: ${{contains(env.BUILD_TYPE,'mamba')}}
+      uses: mamba-org/setup-micromamba@v2
+      with:
+        environment-file: ${{env.MAMBA_ENV_FILE}}
+        cache-environment: true #  caching gives errors during dev, use only after workflow works
+    - name: install jupyterlite-xeus packages
+      if: ${{contains(env.BUILD_TYPE,'jupyterlite-xeus')}}
+      shell: bash -l {0}
+      run: |
+          jupyter lite build \
+          --config jupyter_lite_config.json \
+          --output-dir ${{env.BUILD_DESTINATION_DIR}}  \
+          --XeusAddon.mount_jupyterlite_content=True 
+    - name: install jupyterlite-pyodide packages
+      if: ${{contains(env.BUILD_TYPE,'jupyterlite-pyodide')}}
+      shell: bash -l {0}
+      run: jupyter lite build --config jupyter_lite_config.json --output-dir ${{env.BUILD_DESTINATION_DIR}}     
+
+          
