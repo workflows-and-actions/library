@@ -36,6 +36,7 @@ jobs:
       - name: python install and Build 
         if: ${{contains(vars.BUILD_TYPE,'python')}}     
         uses: workflows-and-actions/library/.github/actions/build_python@main   
+        env: ${{vars}}
         with:
           passed_vars:  '${{ toJSON(vars) }}'
       - name: upload artifact for download to deploy outside github
