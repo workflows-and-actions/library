@@ -35,7 +35,9 @@ jobs:
         run: cd ${{vars.BUILD_ROOT_DIR}} && npm ${{vars.NPM_INSTALL_COMMAND}}  && npm run ${{vars.NPM_BUILD_COMMAND}} && npm run ${{vars.NPM_PURGECSS_COMMAND}}   
       - name: python install and Build 
         if: ${{contains(vars.BUILD_TYPE,'python')}}     
-        uses: workflows-and-actions/library/.github/workflows/build_python.yml@main      
+        uses: workflows-and-actions/library/.github/actions/build_python@main   
+        with:
+          passed_vars:  '${{ toJSON(vars) }}'
       - name: upload artifact for download to deploy outside github
         uses: actions/upload-artifact@v4
         with:
