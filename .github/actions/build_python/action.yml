@@ -11,6 +11,7 @@ runs:
   using: composite
   steps:
     - name: Setup Python 
+      shell: bash
       run: |
         echo 1 ${{fromJSON(inputs.passed_vars)}}
         echo 2 "${{fromJSON(inputs.passed_vars)}}"
