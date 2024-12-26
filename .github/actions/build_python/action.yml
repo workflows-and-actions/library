@@ -1,0 +1,18 @@
+name: build_python
+description: custom build python
+inputs:
+  passed_vars:
+    description: source directory for build
+    required: true 
+    type: string
+runs:
+  env: 
+    pv: "${{fromJSON(inputs.passed_vars)}}"
+  using: composite
+  steps:
+    - name: Setup Python 
+      run: |
+        echo 1 ${{fromJSON(inputs.passed_vars)}}
+        echo 2 "${{fromJSON(inputs.passed_vars)}}"
+        echo 3 ${{env.pv}}
+        echo 4 "${{env.pv}}"
