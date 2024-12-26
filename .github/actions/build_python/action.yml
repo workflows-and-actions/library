@@ -11,7 +11,7 @@ runs:
     - name: Setup Python 
       shell: bash
       run: |
-        echo 1 ${{fromJSON(inputs.passed_vars)}}
-        echo 2 "${{fromJSON(inputs.passed_vars)}}"
+        echo 1 ${{fromJSON(inputs.passed_vars.APP_NAME)}}
+        echo 2 "${{fromJSON(inputs.passed_vars.APP_NAME)}}"
  #       echo 3 ${{env.pv}}
  #       echo 4 "${{env.pv}}"
