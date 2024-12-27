@@ -3,10 +3,10 @@ description: custom build python
 runs:
   using: composite
   steps:
-#    - name: Setup Python 
-#      uses: actions/setup-python@v5
-#      with:
-#        python-version: ${{env.python_version}}
+    - name: Setup Python 
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{env.PYTHON_VERSION}}
       #  cache: pip # caching gives errors during dev, use only after workflow works
     - name: install python packages using requirements.txt
       if: ${{contains(env.BUILD_TYPE,'install-requirements')}}
