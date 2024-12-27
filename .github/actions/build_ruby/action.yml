@@ -16,3 +16,7 @@ runs:
         bundle exec jekyll build \
         --source ./${{env.BUILD_ROOT_DIR}} \
         --destination ${{env.BUILD_DESTINATION_DIR}}
+    - name: purgecss
+      if: ${{contains(env.BUILD_TYPE,'purgecss')}}
+      shell: bash
+      run: npm install && npm run purge-css
