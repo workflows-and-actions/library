@@ -17,7 +17,8 @@ runs:
       uses: mamba-org/setup-micromamba@v2
       with:
         environment-file: ${{env.MAMBA_ENV_FILE}}
-        cache-environment: true #  caching gives errors during dev, use only after workflow works
+#  caching gives errors during dev, use only after workflow works        
+        cache-environment: false 
     - name: install jupyterlite-xeus packages
       if: ${{contains(env.BUILD_TYPE,'jupyterlite-xeus')}}
       shell: bash -l {0}
@@ -29,7 +30,6 @@ runs:
     - name: install jupyterlite-pyodide packages
       if: ${{contains(env.BUILD_TYPE,'jupyterlite-pyodide')}}
       shell: bash -l {0}
-      run: jupyter lite build --config jupyter_lite_config.json --output-dir ${{env.BUILD_DESTINATION_DIR}} --lite-dir ${{env.BUILD_ROOT_DIR}} --base-url '/testq'
-  #    ${{env.ACCESS_BASE_PATH}}
+      run: jupyter lite build --config jupyter_lite_config.json --output-dir ${{env.BUILD_DESTINATION_DIR}} --lite-dir ${{env.BUILD_ROOT_DIR}} --base-url ${{env.ACCESS_BASE_PATH}}
 
           
