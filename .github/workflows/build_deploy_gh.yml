@@ -15,9 +15,6 @@ jobs:
       pages: read
     runs-on: ubuntu-latest
     steps:
-      - name: test var and environment
-        run: |
-          echo ${{vars.APP_NAME}}
       - name: checkout
         uses: actions/checkout@v4
       - name: Setup Pages
@@ -36,6 +33,10 @@ jobs:
       - name: python install and Build 
         if: ${{contains(vars.BUILD_TYPE,'python')}}     
         uses: workflows-and-actions/library/.github/actions/build_python@main   
+        env: ${{vars}}
+      - name: ruby install and Build 
+        if: ${{contains(inputs.build_languages,'ruby')}}     
+        uses: workflows-and-actions/library/.github/actions/build_ruby@main
         env: ${{vars}}
       - name: upload artifact for download to deploy outside github
         uses: actions/upload-artifact@v4
