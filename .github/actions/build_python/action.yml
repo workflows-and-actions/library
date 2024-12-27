@@ -9,7 +9,7 @@ runs:
 #        python-version: ${{env.python_version}}
       #  cache: pip # caching gives errors during dev, use only after workflow works
     - name: install python packages using requirements.txt
-      if: ${{contains(env.BUILD_TYPE,'pip_install_requirements')}}
+      if: ${{contains(env.BUILD_TYPE,'install-requirements')}}
       shell: bash    
       run: pip install -r requirements.txt
     - name: install jupyterlite-xeus packages
