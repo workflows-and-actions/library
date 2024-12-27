@@ -27,9 +27,6 @@ jobs:
         with:
           source: ${{vars.BUILD_ROOT_DIR}}
           destination: ${{vars.BUILD_DESTINATION_DIR}} 
-      - name: node install and Build 
-        if: ${{contains(vars.BUILD_TYPE,'node')}}     
-        run: cd ${{vars.BUILD_ROOT_DIR}} && npm ${{vars.NPM_INSTALL_COMMAND}}  && npm run ${{vars.NPM_BUILD_COMMAND}} && npm run ${{vars.NPM_PURGECSS_COMMAND}}   
       - name: python install and Build 
         if: ${{contains(vars.BUILD_TYPE,'python')}}     
         uses: workflows-and-actions/library/.github/actions/build_python@main   
@@ -37,6 +34,10 @@ jobs:
       - name: ruby install and Build 
         if: ${{contains(vars.BUILD_TYPE,'ruby')}}     
         uses: workflows-and-actions/library/.github/actions/build_ruby@main
+        env: ${{vars}}
+      - name: node install and Build 
+        if: ${{contains(vars.BUILD_TYPE,'node')}}     
+        uses: workflows-and-actions/library/.github/actions/build_node@main   
         env: ${{vars}}
       - name: upload artifact for download to deploy outside github
         uses: actions/upload-artifact@v4
