@@ -35,7 +35,7 @@ jobs:
         uses: workflows-and-actions/library/.github/actions/build_python@main   
         env: ${{vars}}
       - name: ruby install and Build 
-        if: ${{contains(inputs.build_languages,'ruby')}}     
+        if: ${{contains(vars.BUILD_TYPE,'ruby')}}     
         uses: workflows-and-actions/library/.github/actions/build_ruby@main
         env: ${{vars}}
       - name: upload artifact for download to deploy outside github
