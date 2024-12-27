@@ -9,7 +9,7 @@ runs:
 #        ruby-version:  ${{inputs.ruby_version}}
 #        bundler-cache: true 
     - name: build jekyll
-      if: ${{contains(env.BUILD_TYPE,'ruby-jekyll')}}
+      if: ${{contains(env.BUILD_TYPE,'jekyll')}}
       shell: bash
       run: |
         export JEKYLL_ENV=production
