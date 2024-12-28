@@ -16,7 +16,7 @@ runs:
       if: ${{contains(env.BUILD_TYPE,'mamba')}}
       uses: mamba-org/setup-micromamba@v2
       with:
-        environment-file: ${{env.MAMBA_ENV_FILE}}
+        environment-file: ${{env.BUILD_ROOT_DIR/env.MAMBA_ENV_FILE}}
 #  caching gives errors during dev, use only after workflow works        
         cache-environment: true 
     - name: install jupyterlite-xeus packages
