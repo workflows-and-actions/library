@@ -17,9 +17,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
+   #   - name: Setup Pages
+   #     id: pages
+   #     uses: actions/configure-pages@v5
       - name: jekyll-build-pages@v1
         if: ${{contains(vars.BUILD_TYPE,'jekyll-gh-pages')}}
      # default jekyll build   
