@@ -18,7 +18,7 @@ runs:
       with:
         environment-file: "${{env.BUILD_ROOT_DIR}}/${{env.MAMBA_ENV_FILE}}"
 #  caching gives errors during dev, use only after workflow works        
-        cache-environment: true 
+        cache-environment: false 
     - name: install jupyterlite-xeus packages
       if: ${{contains(env.BUILD_TYPE,'jupyterlite-xeus')}}
       shell: bash -l {0}
