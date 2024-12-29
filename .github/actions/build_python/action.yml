@@ -24,7 +24,7 @@ runs:
       shell: bash -l {0}
       run: |
         jupyter lite build \
-        --config jupyter_lite_config.json --output-dir ${{env.BUILD_DESTINATION_DIR}} \
+        --config ./jupyter_lite_config.json --output-dir ${{env.BUILD_DESTINATION_DIR}} \
         --lite-dir ${{env.BUILD_ROOT_DIR}} --no-sourcemaps --no-unused-shared-packages \
         --XeusAddon.environment_file=${{env.JPTLITE_XEUS_ENV_FILE}} \
         --XeusAddon.mount_jupyterlite_content=True 
@@ -33,4 +33,4 @@ runs:
       shell: bash -l {0}
       run: | 
         jupyter lite build --base-url ${{env.ACCESS_BASE_PATH}} --output-dir ${{env.BUILD_DESTINATION_DIR}} \
-        --config jupyter_lite_config.json --lite-dir ${{env.BUILD_ROOT_DIR}} --no-sourcemaps --no-unused-shared-packages
+        --config ./jupyter_lite_config.json --lite-dir ${{env.BUILD_ROOT_DIR}} --no-sourcemaps --no-unused-shared-packages
