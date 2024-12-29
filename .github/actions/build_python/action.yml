@@ -37,7 +37,7 @@ runs:
         --output-dir ${{env.BUILD_DESTINATION_DIR}} \
         --lite-dir ${{env.BUILD_ROOT_DIR}} \
         --base-url ${{env.ACCESS_BASE_PATH}} \
-        --no-sourcemaps true \
-        --no-unused-shared-packages true
+        --no-sourcemaps \
+        --no-unused-shared-packages
 
           
