@@ -32,11 +32,4 @@ runs:
       if: ${{contains(env.BUILD_TYPE,'jupyterlite-pyodide')}}
       shell: bash -l {0}
       run: | 
-        jupyter lite build \
-        --config jupyter_lite_config.json \
-        --output-dir ${{env.BUILD_DESTINATION_DIR}} \
-        --lite-dir ${{env.BUILD_ROOT_DIR}} \
-        --no-sourcemaps \
-        --no-unused-shared-packages
-
- # --base-url=${{env.ACCESS_BASE_PATH}}          
+        jupyter lite build --base-url ${{env.ACCESS_BASE_PATH}} --output-dir ${{env.BUILD_DESTINATION_DIR}} --lite-dir ${{env.BUILD_ROOT_DIR}} --no-sourcemaps --no-unused-shared-packages
