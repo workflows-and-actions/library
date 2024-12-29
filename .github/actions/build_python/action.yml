@@ -36,7 +36,7 @@ runs:
         --config jupyter_lite_config.json \
         --output-dir ${{env.BUILD_DESTINATION_DIR}} \
         --lite-dir ${{env.BUILD_ROOT_DIR}} \
-        --base-url /asd/
+        --base-url='dfg' \
         --no-sourcemaps \
         --no-unused-shared-packages
 
