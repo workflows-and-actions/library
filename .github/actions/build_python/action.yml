@@ -27,7 +27,7 @@ runs:
         --config ${{env.BUILD_ROOT_DIR}}/jupyter_lite_config.json --output-dir ${{env.BUILD_DESTINATION_DIR}} \
         --lite-dir ${{env.BUILD_ROOT_DIR}} --no-sourcemaps --no-unused-shared-packages \
         --XeusAddon.environment_file=${{env.JPTLITE_XEUS_ENV_FILE}} \
-        --XeusAddon.mount_jupyterlite_content=True 
+        --XeusAddon.mount_jupyterlite_content=False
     - name: install jupyterlite-pyodide packages
       if: ${{contains(env.BUILD_TYPE,'jupyterlite-pyodide')}}
       shell: bash -l {0}
