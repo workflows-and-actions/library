@@ -3,7 +3,7 @@ on:
   workflow_call       
 jobs:   
   build:
-    environment: ${{vars.active_repo_env}} # This has to be set for EACH JOB, however, called (composite?) actions inherit the environment
+    environment: ${{vars.ACTIVE_REPO_ENV}} # This has to be set for EACH JOB, however, called (composite?) actions inherit the environment
     # the env below is used in vite and prugecss config
     env:
       GHWFL_BUILD_DESTINATION_DIR: ${{vars.BUILD_DESTINATION_DIR}}
