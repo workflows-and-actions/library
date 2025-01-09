@@ -1,3 +1,4 @@
+# build frontend and deploy gh-pages or ONLY build for a custom base path.  
 name: build and deploy gh-pages
 on:
   workflow_call       
