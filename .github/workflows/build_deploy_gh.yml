@@ -6,11 +6,11 @@ jobs:
   build:
     environment: ${{vars.ACTIVE_REPO_ENV}} # This has to be set for EACH JOB, however, called (composite?) actions inherit the environment
     # the env below is used in vite and prugecss config
-    env:
-      GHWFL_BUILD_DESTINATION_DIR: ${{vars.BUILD_DESTINATION_DIR}}
-      GHWFL_BUILD_SOURCE_PATH: ${{vars.BUILD_SOURCE_PATH}}
-      GHWFL_DEPLOY_HOST_TYPE: ${{vars.DEPLOY_HOST_TYPE}}
-      GHWFL_ACCESS_BASE_PATH: ${{vars.ACCESS_BASE_PATH}}
+#    env:
+#      GHWFL_BUILD_DESTINATION_DIR: ${{vars.BUILD_DESTINATION_DIR}}
+#      GHWFL_BUILD_SOURCE_PATH: ${{vars.BUILD_SOURCE_PATH}}
+#      GHWFL_DEPLOY_HOST_TYPE: ${{vars.DEPLOY_HOST_TYPE}}
+#      GHWFL_ACCESS_BASE_PATH: ${{vars.ACCESS_BASE_PATH}}
     permissions:
       contents: read
       pages: read
@@ -45,12 +45,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{vars.BUILD_ARTIFACT}}
-          path: ${{vars.BUILD_DESTINATION_DIR}}
+          path: ${{vars.BUILD_DESTINATION_PATH}}
       - name: Upload gh-pages artifact for github pages deploy
         if: ${{vars.DEPLOY_HOST_TYPE=='gh_pages'}}
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{vars.BUILD_DESTINATION_DIR}} 
+          path: ${{vars.BUILD_DESTINATION_PATH}} 
   deploy_gh_pages:
     environment: 
       name: github-pages
