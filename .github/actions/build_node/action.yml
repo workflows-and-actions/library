@@ -9,4 +9,5 @@ runs:
         node-version: ${{env.NODE_VERSION}}
     - name: install and build
       shell: bash
-      run: cd ${{env.BUILD_ROOT_DIR}} && npm ${{env.NPM_INSTALL_COMMAND}}  && npm run ${{env.NPM_BUILD_COMMAND}} && npm run ${{env.NPM_PURGECSS_COMMAND}}   
+      run: ls -al && cd ${{env.BUILD_ROOT_DIR}} && ls -al && npm ${{env.NPM_INSTALL_COMMAND}} && ls -al 
+# && npm run ${{env.NPM_BUILD_COMMAND}} && npm run ${{env.NPM_PURGECSS_COMMAND}}   
